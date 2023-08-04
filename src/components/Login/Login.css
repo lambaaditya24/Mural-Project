@@ -1,0 +1,128 @@
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #fff;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: #003c5b;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.logo {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  height: 100%;
+}
+
+.login-form {
+  height: auto;
+  width: 493px;
+}
+
+.Welcome-back {
+  display: block;
+  width: 493px;
+  max-height: 374px;
+  margin: 0 49px 3px 0;
+  font-family: sans-serif;
+  font-size: 40px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+}
+
+.Welcome-back-Please-enter-your-details {
+  display: block;
+  width: 493px;
+  height: 70px;
+  /* margin: 3px 49px 46px 0; */
+  /* margin-bottom: 50px; */
+  font-family: SansSerifCollection;
+  font-size: 16px;
+  font-weight: lighter;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+  margin-top: 20px;
+}
+
+#outlined-basic {
+  color: #fff;
+}
+
+.email {
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+  margin-right: 490px;
+  height: 373px;
+}
+
+.email-rectangle {
+  width: 505px;
+  height: 34px;
+  margin: 11px 0 50px;
+  /* padding: 7px 407px 8px 10px; */
+  border-radius: 8px;
+  border: solid 1px #003c5b;
+  /* background-color: #d9d9d9; */
+}
+
+
+.password {
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #fff;
+    margin-right: 490px;
+    height: 473px;
+  }
+  
+  .password-rectangle {
+    width: 505px;
+    height: 34px;
+    margin: 11px 0 30px;
+    /* padding: 7px 407px 8px 10px; */
+    border-radius: 8px;
+    border: solid 1px #003c5b;
+    margin-bottom: 50px;
+
+    /* background-color: #d9d9d9; */
+  }
