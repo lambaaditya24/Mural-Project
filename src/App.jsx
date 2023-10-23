@@ -9,6 +9,7 @@ import Login from './components/Login/Login'
 import AdminPortal from './components/AdminPortal/AdminPortal';
 import CrewMemberPortal from './components/CrewMemberPortal/CrewMemberPortal';
 import '@mui/material/styles';
+import CrewChiefPortal from './components/CrewChiefPortal/CrewChiefPortal';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -20,7 +21,7 @@ function App() {
         </Route>
         <Route path="/admin-portal" element={<AdminPortal />}>
         </Route>
-        <Route path="/crew-chief-portal" element={<CrewMemberPortal />}>
+        <Route path="/crew-chief-portal" element={<CrewChiefPortal />}>
         </Route>
         <Route path="/crew-member-portal" element={<CrewMemberPortal />}>
         </Route>

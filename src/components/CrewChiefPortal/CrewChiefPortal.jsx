@@ -1,10 +1,10 @@
 import { useState } from "react";
 import MenuAppBar from "../Navbar/Navbar";
 import SideNav from "./SideNav/SideNav";
-import ProfileModule from "./Profile/profile";
-import GoalsModule from "./GoalsModule/GoalsModule";
+import WeeklyAssesment from "./WeeklyAssesment/WeeklyAssesment";
+import MonthylAssesment from "./MonthlyAssesment/MonthlyAssesment";
 
-const CrewMemberPortal = () => {
+const CrewChiefPortal = () => {
   const [pageToBeLoaded, setPage] = useState("");
 
   const childToParent = (value) => {
@@ -13,12 +13,13 @@ const CrewMemberPortal = () => {
 
   let page;
 
-  if (pageToBeLoaded == "" || pageToBeLoaded == "sjModule") {
-    page = <ProfileModule style={{ innerWidth: "300px" }} />;
+  if (pageToBeLoaded == "" || pageToBeLoaded == "weekly") {
+    page = <WeeklyAssesment style={{ innerWidth: "300px" }} />;
 
-  }else if(pageToBeLoaded == "gaModule"){
-    page = <GoalsModule />
-  }
+  }else if(pageToBeLoaded == "monthly"){
+    page = <MonthylAssesment style={{ innerWidth: "300px" }} />;
+
+  };
 //   } else if (pageToBeLoaded == "sjModule") {
 //     page = <UserManagement />;
 //   } else if (pageToBeLoaded == "LearningModule") {
@@ -40,4 +41,4 @@ const CrewMemberPortal = () => {
   );
 };
 
-export default CrewMemberPortal;
+export default CrewChiefPortal;

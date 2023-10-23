@@ -9,38 +9,30 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { ClassNames } from "@emotion/react";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function MenuAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [activePortal, setActivePortal] = React.useState("ADMPortal");
 
   const navigate = useNavigate();
-  const navigateToCMPortal = () => {
-    setActivePortal("CMPortal");
-    navigate("/crew-member-portal");
+  const location = useLocation();
+
+  const navigateToPortal = (portalName, route) => {
+    setActivePortal(portalName);
+    navigate(route);
   };
 
-  const navigateToADMPortal = () => {
-    setActivePortal("ADMPortal");
-    navigate("/admin-portal");
-  };
-
-  const navigateToCCPortal = () => {
-    setActivePortal("CCPortal");
-    navigate("/crew-chief-portal");
-  };
-
-  // useEffect(() => {
-  //   if (activePortal === "CMPortal") {
-  //     setActivePortal("CMPortal");
-  //   } else if (activePortal === "ADMPortal") {
-  //     setActivePortal("ADMPortal");
-  //   }else if (activePortal === "CCPortal") {
-  //     setActivePortal("CCPortal");
-  //   }
-  // }, [activePortal]);
+  useEffect(() => {
+    if (location.pathname === "/crew-member-portal") {
+      setActivePortal("CMPortal");
+    } else if (location.pathname === "/admin-portal") {
+      setActivePortal("ADMPortal");
+    } else if (location.pathname === "/crew-chief-portal") {
+      setActivePortal("CCPortal");
+    }
+  }, [location.pathname]);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -53,80 +45,121 @@ export default function MenuAppBar() {
   return (
     <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1 }}>
       <AppBar position="static" style={{ background: "#fff", zIndex: 1 }}>
-        <Toolbar style={{ padding: 0 }}>
-          <img
-            src="/CDC-LogowTag-2021.png"
-            alt="Coalfield Logo"
-            style={{ width: "250px", marginLeft: 4 }}
-          />
-          <Button
-            variant="h9"
-            component="div"
-            // style={{ color: "#003C5B" }}
-            sx={{
-              flexGrow: 0,
-              height: 60,
-              fontSize: "12px",
-              backgroundColor:
-                activePortal === "ADMPortal" ? "#003C5B" : "#fff",
-              color: activePortal === "ADMPortal" ? "#fff" : "#003C5B",
-              ml: 6,
-              "&:hover": { color: "#fff", backgroundColor: "#003C5B" },
-            }}
-            onClick={navigateToADMPortal}
-          >
-            Admin Portal
-          </Button>
-          <Button
-            variant="h9"
-            component="div"
-            sx={{
-              flexGrow: 0,
-              height: 60,
-              fontSize: "12px",
-              ml: 3,
-              backgroundColor: activePortal === "CCPortal" ? "#003C5B" : "#fff",
-              color: activePortal === "CCPortal" ? "#fff" : "#003C5B",
-              "&:hover": { color: "#fff", backgroundColor: "#003C5B" },
-            }}
-            onClick={navigateToCCPortal}
-          >
-            Crew Chief Portal
-          </Button>
-          <Button
-            variant="h9"
-            component="div"
-            sx={{
-              flexGrow: 0,
-              ml: 3,
-              height: 60,
-              fontSize: "12px",
-              backgroundColor: activePortal === "CMPortal" ? "#003C5B" : "#fff",
-              color: activePortal === "CMPortal" ? "#fff" : "#003C5B",
-              "&:hover": { color: "#fff", backgroundColor: "#003C5B" },
-            }}
-            onClick={navigateToCMPortal}
-          >
-            Crew Member Portal
-          </Button>
-          <div style={{ marginLeft: "390px" }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
+        <Toolbar
+          style={{
+            padding: 0,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src="/CDC-LogowTag-2021.png"
+              alt="Coalfield Logo"
+              style={{ width: "250px", marginLeft: 4 }}
+            />
+            <Button
+              variant="h9"
+              component="div"
+              sx={{
+                flexGrow: 0,
+                height: 60,
+                fontSize: "12px",
+                backgroundColor:
+                  activePortal === "ADMPortal" ? "#003C5B" : "#fff",
+                color: activePortal === "ADMPortal" ? "#fff" : "#003C5B",
+                ml: 6,
+                "&:hover": { color: "#fff", backgroundColor: "#003C5B" },
+              }}
+              onClick={() => navigateToPortal("CCPortal", "/admin-portal")}
             >
-              <AccountCircle />
+              Admin Portal
+            </Button>
+            <Button
+              variant="h9"
+              component="div"
+              sx={{
+                flexGrow: 0,
+                height: 60,
+                fontSize: "12px",
+                ml: 3,
+                backgroundColor:
+                  activePortal === "CCPortal" ? "#003C5B" : "#fff",
+                color: activePortal === "CCPortal" ? "#fff" : "#003C5B",
+                "&:hover": { color: "#fff", backgroundColor: "#003C5B" },
+              }}
+              onClick={() => navigateToPortal("CCPortal", "/crew-chief-portal")}
+            >
+              Crew Chief Portal
+            </Button>
+            <Button
+              variant="h9"
+              component="div"
+              sx={{
+                flexGrow: 0,
+                ml: 3,
+                height: 60,
+                fontSize: "12px",
+                backgroundColor:
+                  activePortal === "CMPortal" ? "#003C5B" : "#fff",
+                color: activePortal === "CMPortal" ? "#fff" : "#003C5B",
+                "&:hover": { color: "#fff", backgroundColor: "#003C5B" },
+              }}
+              onClick={() =>
+                navigateToPortal("CCPortal", "/crew-member-portal")
+              }
+            >
+              Crew Member Portal
+            </Button>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginRight: "50px",
+            }}
+          >
+            <div
+              onClick={handleMenu}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+                padding: "10px",
+                backgroundColor: "#f4f4f4",
+                borderRadius: "50%",
+                transition: "background-color 0.3s",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#e0e0e0")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "#f4f4f4")
+              }
+            >
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                style={{ padding: "0px" }}
+              >
+                <AccountCircle style={{ fontSize: "24px", color: "#003C5B" }} />
+              </IconButton>
               <Typography
-                variant="h9"
-                component="div"
-                style={{ color: "#003C5B", fontSize: "16px" }}
+                variant="body1"
+                component="span"
+                style={{
+                  marginLeft: "10px",
+                  color: "#003C5B",
+                  fontSize: "16px",
+                  fontWeight: 500,
+                }}
               >
                 Brandon
               </Typography>
-            </IconButton>
+            </div>
 
             <Menu
               id="menu-appbar"
@@ -142,9 +175,26 @@ export default function MenuAppBar() {
               }}
               open={Boolean(anchorEl)}
               onClose={handleClose}
+              PaperProps={{
+                style: {
+                  marginTop: "40px",
+                  borderRadius: "8px",
+                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                },
+              }}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
+              <MenuItem
+                onClick={handleClose}
+                style={{ fontSize: "15px", fontWeight: 500 }}
+              >
+                Profile
+              </MenuItem>
+              <MenuItem
+                onClick={handleClose}
+                style={{ fontSize: "15px", fontWeight: 500 }}
+              >
+                Logout
+              </MenuItem>
             </Menu>
           </div>
         </Toolbar>

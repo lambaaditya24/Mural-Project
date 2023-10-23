@@ -18,16 +18,11 @@ import {
   Button,
   DialogActions,
   DialogContent,
-  DialogTitle,
-  TextField,
   TextareaAutosize,
   Tooltip,
 } from "@mui/material";
 // import { styled } from '@mui/system';
-import ListSubheader from "@mui/material/ListSubheader";
 import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -518,7 +513,7 @@ const JournalModule = (props) => {
                   backgroundColor: "#003C5B",
                 }}
               >
-                Take Assessment
+                Reflections
               </Button>
             </Main>
           </Box>
