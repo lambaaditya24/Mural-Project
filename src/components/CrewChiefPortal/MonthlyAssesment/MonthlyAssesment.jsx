@@ -29,6 +29,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import ProfessionalAssesment from "./DialogAssesment/ProfessionalAssesment";
 
 const MonthylAssesment = () => {
   const [rows, setRows] = React.useState([
@@ -72,7 +73,8 @@ const MonthylAssesment = () => {
       <CssBaseline />
       <Paper
         elevation={3}
-        sx={{ minHeight: "80vh", mt: 15, width: "1500px", ml: 40 }}
+        sx={{ minHeight: "80vh", mt: 12, maxWidth: "80vw", ml: 30 }}
+
       >
         <AppBar
           sx={{
@@ -256,11 +258,11 @@ const MonthylAssesment = () => {
         {/* Showing th visualization with conditional rendering based on showVisualization */}
         {showVisualization && <Visualization />}
 
-        {/* <DialogAssesment
+        <ProfessionalAssesment
           openDialog={openDialog}
-          editRow={rows}
+          editRow={editRow}
           handleClose={handleCloseDialog}
-        /> */}
+        />
       </Paper>
     </React.Fragment>
   );

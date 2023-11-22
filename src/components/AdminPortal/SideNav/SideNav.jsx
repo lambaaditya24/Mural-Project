@@ -40,6 +40,9 @@ const SideNav = ({childToParent}) => {
         <Button variant="text" value="LearningModule" style={{ color: "#fff",marginTop:'35px', textAlign:'left',fontSize:'12px' }} onClick={()=>{childToParent(event.target.value)}}>
           Learning Categories Module
         </Button>
+        <Button variant="text" value="journal" style={{ color: "#fff",marginTop:'35px', textAlign:'left',fontSize:'12px' }} onClick={()=>{childToParent(event.target.value)}}>
+          Add Journal Content 
+        </Button>
       </Drawer>
     </Box>
   );

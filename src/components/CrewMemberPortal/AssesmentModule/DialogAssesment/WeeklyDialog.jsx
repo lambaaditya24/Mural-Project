@@ -11,17 +11,22 @@ import {
   Button,
   Typography,
   useMediaQuery,
-  useTheme
+  useTheme,
+  Tooltip,
+  IconButton
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import "./DialogAssesment.css";
+import "./WeeklyDialog.css";
 
-const DialogAssesment = (props) => {
+const WeeklyDialog = (props) => {
   const [rows, setRows] = React.useState([
     {
       criteria: "Attendance",
+      score: 20,
+      notes:"Been punctual",
       description: null,
       subCategory: [
         {
@@ -33,15 +38,15 @@ const DialogAssesment = (props) => {
             },
             {
               desc: "Arrived on time each day, at or before start time (unless approved otherwise)",
-              checked: false,
+              checked: true,
             },
             {
               desc: "Present until end of scheduled day (unless approved otherwise)",
-              checked: false,
+              checked: true,
             },
             {
               desc: "Returned from all authorized breaks & lunch on time",
-              checked: false,
+              checked: true,
             },
           ],
         },
@@ -50,6 +55,9 @@ const DialogAssesment = (props) => {
 
     {
       criteria: "Attitude",
+      notes:"Good Attitude",
+
+      score: 20,
       description:
         "When present, completed all work tasks assigned and challenges faced with:",
       subCategory: [
@@ -58,19 +66,19 @@ const DialogAssesment = (props) => {
           values: [
             {
               desc: "No complaining or whining",
-              checked: false,
+              checked: true,
             },
             {
               desc: "commitment to excellent work",
-              checked: false,
+              checked: true,
             },
             {
               desc: "fully participating",
-              checked: false,
+              checked: true,
             },
             {
               desc: "diving into the work",
-              checked: false,
+              checked: true,
             },
             {
               desc: "focused",
@@ -78,16 +86,18 @@ const DialogAssesment = (props) => {
             },
             {
               desc: "committed",
-              checked: false,
+              checked: true,
             },
             {
               desc: "belief in self, each other, and community",
-              checked: false,
+              checked: true,
             },
           ],
         },
         {
           name: "Grit",
+      notes:"N/A",
+      score: 20,
           values: [
             {
               desc: "Doggedly pursued solutions to problems",
@@ -95,15 +105,15 @@ const DialogAssesment = (props) => {
             },
             {
               desc: "followed through",
-              checked: false,
+              checked: true,
             },
             {
               desc: "reflective",
-              checked: false,
+              checked: true,
             },
             {
               desc: "fully present",
-              checked: false,
+              checked: true,
             },
             {
               desc: "aware of how you impact the work and those around you",
@@ -115,7 +125,7 @@ const DialogAssesment = (props) => {
             },
             {
               desc: "willing to learn and grow",
-              checked: false,
+              checked: true,
             },
           ],
         },
@@ -123,6 +133,8 @@ const DialogAssesment = (props) => {
     },
     {
       criteria: "Communication",
+      notes:"Poor Communication, need to improve!!",
+      score: 0,
       description: null,
       subCategory: [
         {
@@ -134,19 +146,19 @@ const DialogAssesment = (props) => {
             },
             {
               desc: "Communicated challenges, concerns, fears, stresses",
-              checked: false,
+              checked: true,
             },
             {
               desc: "Check & responded to work email",
-              checked: false,
+              checked: true,
             },
             {
               desc: "Milestone work or Development meetings communicated to/approved by Crew Chief at least 24 hours in advance",
-              checked: false,
+              checked: true,
             },
             {
               desc: "Communicated effectively with team on the work site",
-              checked: false,
+              checked: true,
             },
           ],
         },
@@ -154,6 +166,8 @@ const DialogAssesment = (props) => {
     },
     {
       criteria: "Academic and Professional Development:",
+      notes:"Good work",
+      score: 20,
       description: null,
       subCategory: [
         {
@@ -161,24 +175,25 @@ const DialogAssesment = (props) => {
           values: [
             {
               desc: "Check in with Crew Chief about school at least once in this week about grades and assignments",
-              checked: false,
+              checked: true,
             },
             {
               desc: "Attended Study Hall (unless approved otherwise)",
-              checked: false,
+              checked: true,
             },
             {
               desc: "Maintained school attendance (unless approved otherwise)",
-              checked: false,
+              checked: true,
             },
           ],
         },
         {
           name: "Trainees & Crew Members",
+      score: 20,
           values: [
             {
               desc: "Actively participated in professional training sessions (unless approved otherwise)",
-              checked: false,
+              checked: true,
             },
           ],
         },
@@ -186,6 +201,8 @@ const DialogAssesment = (props) => {
     },
     {
       criteria: "Personal Development:",
+      notes:"Good work in this area",
+      score: 20,
       description: null,
       subCategory: [
         {
@@ -193,7 +210,7 @@ const DialogAssesment = (props) => {
           values: [
             {
               desc: "Actively participated in PD Journal (not applicable 3rd-5th week)",
-              checked: false,
+              checked: true,
             },
             {
               desc: "Actively participated in Financial Literacy session (not applicable 3rd-5th week)",
@@ -206,7 +223,7 @@ const DialogAssesment = (props) => {
           values: [
             {
               desc: "Week 3 Activity (only applicable on 3rd week) (unless approved otherwise)",
-              checked: false,
+              checked: true,
             },
           ],
         },
@@ -218,18 +235,7 @@ const DialogAssesment = (props) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  
-  const handleCheckboxChange = (rowIdx, subIdx, valueIdx) => {
-    setRows((currentRows) => {
-      // Create a deep copy of the current rows to prevent direct state mutation
-      const newRows = JSON.parse(JSON.stringify(currentRows));
-  
-      // Invert the 'checked' value of the targeted checkbox
-      newRows[rowIdx].subCategory[subIdx].values[valueIdx].checked = !newRows[rowIdx].subCategory[subIdx].values[valueIdx].checked;
-  
-      return newRows;
-    });
-  };
+
   let dialogWidth;
   if (isSmallScreen) {
     dialogWidth = "85vw"; // or any other value suitable for small screens
@@ -279,6 +285,11 @@ const DialogAssesment = (props) => {
           }}
         >
           Participation Criteria & Scoring
+          <Tooltip sx={{ ml: 132, mb: 0 }} title="Close">
+                  <IconButton onClick={handleCloseAssesment}>
+                    <CloseIcon sx={{ color: "#fff" }} />
+                  </IconButton>
+                </Tooltip>
         </DialogTitle>
         <DialogContent sx={{ padding: 0 }}>
           <div
@@ -293,7 +304,7 @@ const DialogAssesment = (props) => {
             }}
           >
             <span style={{ fontWeight: 700 }}>Employee Name :</span>
-            {props.editRow ? props.editRow.name : "Default"}
+            Devon
             <span style={{ fontWeight: 700, marginLeft: 30 }}>
               Supervisor Completing the scorecard :
             </span>
@@ -327,8 +338,7 @@ const DialogAssesment = (props) => {
                               <input
                                 type="checkbox"
                                 checked={value.checked}
-                                onChange={() => handleCheckboxChange(idx, subIdx, valueIdx)}
-                                
+                                readOnly
                               />
                               {value.desc}
                             </ul>
@@ -339,11 +349,11 @@ const DialogAssesment = (props) => {
                     <div className="score-section">
                       <label>
                         {section.criteria} Score:
-                        <input className="score-input" placeholder="0 or 20" />
+                        <input className="score-input" placeholder="0 or 20" value={section.score} readOnly />
                       </label>
                       <label>
                         Notes on {section.criteria}:
-                        <textarea className="score-notes"></textarea>
+                        <textarea className="score-notes" value={section.notes} readOnly></textarea>
                       </label>
                     </div>
                   </div>
@@ -357,17 +367,17 @@ const DialogAssesment = (props) => {
           <div>
             <label style={{ fontWeight: 700, marginLeft: "10px" }}>
               Total Score (Out of 100)
-              <input className="score-input" />
+              <input className="score-input" readOnly value={props.editRow ? props.editRow.score : 'N/A'}/>
             </label>
           </div>
           <div>
-            <Button
+            {/* <Button
               onClick={handleCloseAssesment}
               style={{ color: "#fff", backgroundColor: "#003C5B" }}
             >
               Cancel
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               autoFocus
               onClick={handleCloseAssesment}
               style={{
@@ -377,8 +387,8 @@ const DialogAssesment = (props) => {
                 backgroundColor: "#003C5B",
               }}
             >
-              Submit
-            </Button>
+              Close
+            </Button> */}
           </div>
         </DialogActions>
       </Dialog>
@@ -386,4 +396,4 @@ const DialogAssesment = (props) => {
   );
 };
 
-export default DialogAssesment;
+export default WeeklyDialog;

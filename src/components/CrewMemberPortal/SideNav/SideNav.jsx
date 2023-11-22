@@ -43,7 +43,7 @@ const SideNav = ({childToParent}) => {
         {/* <Button variant="text" value="sjModule" style={{ fontSize:"12px", color: "#fff",marginTop:'25px', textAlign:'left' }} onClick={()=>{childToParent(event.target.value)}}>
           Submit Journals Module
         </Button> */}
-        <Button variant="text" value="vaModule" style={{ fontSize:"12px", color: "#fff",marginTop:'25px', textAlign:'left' }} onClick={()=>{childToParent(event.target.value)}}>
+        <Button variant="text" value="assesment" style={{ fontSize:"12px", color: "#fff",marginTop:'25px', textAlign:'left' }} onClick={()=>{childToParent(event.target.value)}}>
           View Assessment Module
         </Button>
         <Button variant="text" value="cmModule" style={{ fontSize:"12px", color: "#fff",marginTop:'25px', textAlign:'left' }} onClick={()=>{childToParent(event.target.value)}}>

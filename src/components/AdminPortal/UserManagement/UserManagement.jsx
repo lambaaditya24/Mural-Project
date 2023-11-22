@@ -35,7 +35,6 @@ const UserManagement = () => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log(value);
   };
 
   let page;

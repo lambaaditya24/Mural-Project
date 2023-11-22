@@ -3,6 +3,8 @@ import MenuAppBar from "../Navbar/Navbar";
 import SideNav from "./SideNav/SideNav";
 import ProfileModule from "./Profile/profile";
 import GoalsModule from "./GoalsModule/GoalsModule";
+import AcademicModule from "./Academic/AcademicModule";
+import AssesmentModule from "./AssesmentModule/AssesmentModule";
 
 const CrewMemberPortal = () => {
   const [pageToBeLoaded, setPage] = useState("");
@@ -13,20 +15,17 @@ const CrewMemberPortal = () => {
 
   let page;
 
-  if (pageToBeLoaded == "" || pageToBeLoaded == "sjModule") {
+  if (pageToBeLoaded == "" || pageToBeLoaded == "profile") {
     page = <ProfileModule style={{ innerWidth: "300px" }} />;
 
   }else if(pageToBeLoaded == "gaModule"){
     page = <GoalsModule />
+  }else if(pageToBeLoaded == "academicAchievments"){
+    page = <AcademicModule />
+  }else if(pageToBeLoaded == "assesment"){
+    page = <AssesmentModule />
   }
-//   } else if (pageToBeLoaded == "sjModule") {
-//     page = <UserManagement />;
-//   } else if (pageToBeLoaded == "LearningModule") {
-//     page = <LearningModule />;
-//   } else {
-//     page = <SocialEnterprisePage style={{ innerWidth: "300px" }} />;
 
-//   }
   return (
     <div id="root">
       <div className="container">

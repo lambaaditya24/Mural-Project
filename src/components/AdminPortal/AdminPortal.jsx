@@ -4,6 +4,7 @@ import SideNav from "./SideNav/SideNav";
 import SocialEnterprisePage from "./SocialEnterprise/SocialEnterprise";
 import UserManagement from "./UserManagement/UserManagement";
 import LearningModule from "./LearningModule/LearningModule";
+import AddJournalModule from "./AddJournalModule/AddJournalModule";
 
 const AdminPortal = () => {
   const [pageToBeLoaded, setPage] = useState("");
@@ -20,7 +21,11 @@ const AdminPortal = () => {
     page = <UserManagement />;
   } else if (pageToBeLoaded == "LearningModule") {
     page = <LearningModule />;
-  } else {
+  }
+  else if (pageToBeLoaded == "journal") {
+    page = <AddJournalModule />;
+  } 
+  else {
     page = <SocialEnterprisePage style={{ innerWidth: "300px" }} />;
 
   }

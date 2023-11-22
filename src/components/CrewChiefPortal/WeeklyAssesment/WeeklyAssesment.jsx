@@ -63,9 +63,11 @@ const WeeklyAssesment = () => {
   return (
     <React.Fragment>
       <CssBaseline />
+      
       <Paper
         elevation={3}
-        sx={{ minHeight: "80vh", mt: 15, width: "1500px", ml: 40 }}
+        sx={{ minHeight: "80vh", mt: 12, maxWidth: "80vw", ml: 30 }}
+        
       >
         <AppBar
           sx={{
